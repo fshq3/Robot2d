@@ -18,7 +18,7 @@ class c_robot2d_gui
 public:
 	/* Information about the current video settings. */
 	const SDL_VideoInfo* info;
-	robot2d_world world;
+	c_robot2d_world world;
 	/* Dimensions of our window. */
 	int width ;
 	int height ;

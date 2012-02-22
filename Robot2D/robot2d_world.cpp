@@ -1,7 +1,7 @@
 #include "robot2d_world.h"
 
 
-void robot2d_world::create()
+void c_robot2d_world::create()
 {
 	// Define the gravity vector.
 	b2Vec2 gravity(0.0f, -10.0f);
@@ -51,7 +51,7 @@ void robot2d_world::create()
 	body->CreateFixture(&fixtureDef);
 
 }
-void robot2d_world::step(float32 tick_interval)
+void c_robot2d_world::step(float32 tick_interval)
 {
 	if(m_world==NULL)
 		return;
@@ -67,7 +67,7 @@ void robot2d_world::step(float32 tick_interval)
 	m_world->Step(timeStep, velocityIterations, positionIterations);
 
 }
-void robot2d_world::draw()
+void c_robot2d_world::draw()
 {
 	if(m_world==NULL)
 		return;
