@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_workspace_file>
+	<Workspace title="Workspace">
+		<Project filename="box2d/box2d.cbp" />
+		<Project filename="tinyxml/tinyxml.cbp" />
+		<Project filename="robot2d/robot2d.cbp" />
+		<Project filename="robot2d_test/robot2d_test.cbp" active="1" />
+	</Workspace>
+</CodeBlocks_workspace_file>

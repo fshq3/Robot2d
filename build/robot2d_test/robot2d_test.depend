@@ -1,0 +1,23 @@
+# depslib dependency file v1.0
+1329243829 source:e:\dev\robot\robot2d\htest\main.cpp
+	"htest_gui.h"
+
+1329282706 e:\dev\robot\robot2d\htest\htest_gui.h
+	"htest.h"
+	"simple_gui.h"
+
+1329483017 e:\dev\robot\robot2d\htest\htest.h
+	<iostream>
+	<vector>
+	<map>
+	<string>
+	<sstream>
+	<time.h>
+
+1329484941 e:\dev\robot\robot2d\htest\simple_gui.h
+	<windows.h>
+	"commctrl.h"
+	"richedit.h"
+	<map>
+	<vector>
+

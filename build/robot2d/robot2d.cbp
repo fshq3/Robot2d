@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6" />
+	<Project>
+		<Option title="robot2d" />
+		<Option pch_mode="2" />
+		<Option compiler="gcc" />
+		<Build>
+			<Target title="Debug">
+				<Option output="..\bin\robot2d" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj\Debug\" />
+				<Option type="0" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-g" />
+					<Add directory="..\..\" />
+					<Add directory="..\..\SDL\include" />
+				</Compiler>
+				<Linker>
+					<Add library="libbox2d.a" />
+					<Add library="mingw32" />
+					<Add library="..\..\sdl\lib\libSDL.dll.a" />
+					<Add library="..\..\sdl\lib\libSDLmain.a" />
+					<Add library="opengl32" />
+					<Add library="glu32" />
+					<Add directory="..\bin\" />
+					<Add directory="..\..\SDL\lib" />
+				</Linker>
+			</Target>
+			<Target title="Release">
+				<Option output="..\bin\robot2d" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj\Release\" />
+				<Option type="0" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-O2" />
+				</Compiler>
+				<Linker>
+					<Add option="-s" />
+				</Linker>
+			</Target>
+		</Build>
+		<Compiler>
+			<Add option="-Wall" />
+			<Add option="-fexceptions" />
+		</Compiler>
+		<Unit filename="main.cpp" />
+		<Extensions>
+			<code_completion />
+			<debugger />
+		</Extensions>
+	</Project>
+</CodeBlocks_project_file>
