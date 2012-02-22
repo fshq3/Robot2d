@@ -1,13 +1,7 @@
 #ifndef ROBOT2D_GUI_H_INCLUDED
 #define ROBOT2D_GUI_H_INCLUDED
-
-#define WIN32_LEAN_AND_MEAN
-#include <windows.h>
-#include <SDL/SDL.h>
-#include <GL/gl.h>
-#include <GL/glu.h>
-#include <box2d/box2d.h>
-#include <Robot2d/Render.h>
+#include <Robot2d/Robot2d.h>
+#include <Robot2d/robot2d_world.h>
 using namespace std;
 /*
  * SDL OpenGL Tutorial.
@@ -17,85 +11,7 @@ using namespace std;
  * Distributed under terms of the LGPL.
  */
 static GLboolean should_rotate = GL_TRUE;
-class robot2d_world
-{
-public:
-	b2World *m_world;
-	c_b2draw drawer;
-	void create()
-	{
-		// Define the gravity vector.
-		b2Vec2 gravity(0.0f, -10.0f);
 
-		// Construct a world object, which will hold and simulate the rigid bodies.
-		m_world = new b2World(gravity);
-
-		// Define the ground body.
-		b2BodyDef groundBodyDef;
-		groundBodyDef.position.Set(0.0f, -10.0f);
-
-		// Call the body factory which allocates memory for the ground body
-		// from a pool and creates the ground box shape (also from a pool).
-		// The body is also added to the world.
-		b2Body* groundBody = m_world->CreateBody(&groundBodyDef);
-
-		// Define the ground box shape.
-		b2PolygonShape groundBox;
-
-		// The extents are the half-widths of the box.
-		groundBox.SetAsBox(50.0f, 10.0f);
-
-		// Add the ground fixture to the ground body.
-		groundBody->CreateFixture(&groundBox, 0.0f);
-
-		// Define the dynamic body. We set its position and call the body factory.
-		b2BodyDef bodyDef;
-		bodyDef.type = b2_dynamicBody;
-		bodyDef.position.Set(0.0f, 4.0f);
-		b2Body* body = m_world->CreateBody(&bodyDef);
-
-		// Define another box shape for our dynamic body.
-		b2PolygonShape dynamicBox;
-		dynamicBox.SetAsBox(1.0f, 1.0f);
-
-		// Define the dynamic body fixture.
-		b2FixtureDef fixtureDef;
-		fixtureDef.shape = &dynamicBox;
-
-		// Set the box density to be non-zero, so it will be dynamic.
-		fixtureDef.density = 1.0f;
-
-		// Override the default friction.
-		fixtureDef.friction = 0.3f;
-
-		// Add the shape to the body.
-		body->CreateFixture(&fixtureDef);
-
-	}
-	void step()
-	{
-		if(m_world==NULL)
-			return;
-		// Prepare for simulation. Typically we use a time step of 1/60 of a
-		// second (60Hz) and 10 iterations. This provides a high quality simulation
-		// in most game scenarios.
-		float32 timeStep = 1.0f / 60.0f;
-		int32 velocityIterations = 6;
-		int32 positionIterations = 2;
-
-		// Instruct the world to perform a single step of simulation.
-		// It is generally best to keep the time step and iterations fixed.
-		m_world->Step(timeStep, velocityIterations, positionIterations);
-
-	}
-	void draw()
-	{
-		if(m_world==NULL)
-			return;
-		drawer.DrawWorld(m_world);
-	}
-
-};
 
 class c_robot2d_gui
 {
@@ -103,11 +19,25 @@ public:
 	/* Information about the current video settings. */
 	const SDL_VideoInfo* info;
 	robot2d_world world;
-	void run()
+	/* Dimensions of our window. */
+	int width ;
+	int height ;
+	c_robot2d_gui(int a_width=640,int a_height=480)
 	{
-		/* Dimensions of our window. */
-		int width = 0;
-		int height = 0;
+				/*
+		 * Set our width/height to 640/480 (you would
+		 * of course let the user decide this in a normal
+		 * app). We get the bpp we will request from
+		 * the display. On X11, VidMode can't change
+		 * resolution, so this is probably being overly
+		 * safe. Under Win32, ChangeDisplaySettings
+		 * can change the bpp.
+		 */
+		width = a_width;
+		height = a_height;
+	}
+	void init_sdl()
+	{
 		/* Color depth in bits of our window. */
 		int bpp = 0;
 		/* Flags we will pass into SDL_SetVideoMode. */
@@ -131,17 +61,7 @@ public:
 			quit_tutorial( 1 );
 		}
 
-		/*
-		 * Set our width/height to 640/480 (you would
-		 * of course let the user decide this in a normal
-		 * app). We get the bpp we will request from
-		 * the display. On X11, VidMode can't change
-		 * resolution, so this is probably being overly
-		 * safe. Under Win32, ChangeDisplaySettings
-		 * can change the bpp.
-		 */
-		width = 640;
-		height = 480;
+
 		bpp = info->vfmt->BitsPerPixel;
 
 		/*
@@ -199,28 +119,43 @@ public:
 		setup_opengl( width, height );
 
 		world.create();
+	}
+	void loop()
+	{
 		/*
 		 * Now we want to begin our normal app process--
 		 * an event loop with a lot of redrawing.
 		 */
+		int tick_interval = 1000/60;
+		next_time = SDL_GetTicks() + tick_interval;
 		while( 1 ) {
 			/* Process incoming events. */
 			process_events( );
-			world.step();
+			world.step(tick_interval);
 			/* Draw the screen. */
 			draw_screen( );
-		}
 
-		/*
-		 * EXERCISE:
-		 * Record timings using SDL_GetTicks() and
-		 * and print out frames per second at program
-		 * end.
-		 */
+			SDL_Delay(time_left());
+			next_time += tick_interval;
+		}
 
 		/* Never reached. */
 	}
-
+	void run()
+	{
+		init_sdl();
+		loop();
+	}
+	Uint32 next_time;
+	Uint32 time_left(void)
+	{
+		Uint32 now;
+		now = SDL_GetTicks();
+		if(next_time <= now)
+			return 0;
+		else
+			return next_time - now;
+	}
 	static void quit_tutorial( int code )
 	{
 		/*

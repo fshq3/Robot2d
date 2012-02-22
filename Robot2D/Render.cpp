@@ -1,8 +1,4 @@
 #include "Render.h"
-#include "stdarg.h"
-#include "stdio.h"
-#include <GL/gl.h>
-#include <GL/glu.h>
 void c_b2draw_shape::DrawPolygon(const b2Vec2* vertices, int32 vertexCount, const b2Color& color)
 {
 	glColor3f(color.r, color.g, color.b);
@@ -128,35 +124,7 @@ void c_b2draw_shape::DrawPoint(const b2Vec2& p, float32 size, const b2Color& col
 
 void c_b2draw_shape::DrawString(int x, int y, const char *string, ...)
 {
-	/*char buffer[128];
 
-	va_list arg;
-	va_start(arg, string);
-	vsprintf(buffer, string, arg);
-	va_end(arg);
-
-	glMatrixMode(GL_PROJECTION);
-	glPushMatrix();
-	glLoadIdentity();
-	int w = glutGet(GLUT_WINDOW_WIDTH);
-	int h = glutGet(GLUT_WINDOW_HEIGHT);
-	gluOrtho2D(0, w, h, 0);
-	glMatrixMode(GL_MODELVIEW);
-	glPushMatrix();
-	glLoadIdentity();
-
-	glColor3f(0.9f, 0.6f, 0.6f);
-	glRasterPos2i(x, y);
-	int32 length = (int32)strlen(buffer);
-	for (int32 i = 0; i < length; ++i)
-	{
-		glutBitmapCharacter(GLUT_BITMAP_8_BY_13, buffer[i]);
-	}
-
-	glPopMatrix();
-	glMatrixMode(GL_PROJECTION);
-	glPopMatrix();
-	glMatrixMode(GL_MODELVIEW);*/
 }
 
 void c_b2draw_shape::DrawAABB(b2AABB* aabb, const b2Color& c)
