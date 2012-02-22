@@ -44,6 +44,9 @@
 			<Add option="-Wall" />
 			<Add option="-fexceptions" />
 		</Compiler>
+		<Unit filename="..\..\Robot2D\Render.cpp" />
+		<Unit filename="..\..\Robot2D\Render.h" />
+		<Unit filename="..\..\Robot2D\robot2d_gui.h" />
 		<Unit filename="main.cpp" />
 		<Extensions>
 			<code_completion />

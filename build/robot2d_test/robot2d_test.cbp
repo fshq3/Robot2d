@@ -16,6 +16,9 @@
 					<Add directory="..\..\htest" />
 					<Add directory="..\..\" />
 				</Compiler>
+				<Linker>
+					<Add library="..\bin\libbox2d.a" />
+				</Linker>
 			</Target>
 			<Target title="Release">
 				<Option output="..\bin\robot2d_test" prefix_auto="1" extension_auto="1" />
@@ -34,6 +37,7 @@
 			<Add option="-Wall" />
 			<Add option="-fexceptions" />
 		</Compiler>
+		<Unit filename="robot2d_test.cpp" />
 		<Unit filename="..\..\htest\main.cpp" />
 		<Extensions>
 			<code_completion />

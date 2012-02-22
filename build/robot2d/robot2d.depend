@@ -1,14 +1,11 @@
 # depslib dependency file v1.0
-1329920587 source:e:\dev\robot\robot2d\build\robot2d\main.cpp
-	<windows.h>
-	<sdl/sdl.h>
-	<cmath>
-	<iostream>
-	<SDL/SDL.h>
-	<GL/gl.h>
-	<GL/glu.h>
+1329925309 source:e:\dev\robot\robot2d\build\robot2d\main.cpp
+	<Robot2d/robot2d_gui.h>
+	<box2d/box2d.h>
 	<stdio.h>
 	<stdlib.h>
+	<cmath>
+	<iostream>
 
 1315039138 e:\dev\robot\robot2d\\box2d\box2d.h
 	<Box2D/Common/b2Settings.h>
@@ -359,4 +356,25 @@
 	"SDL_stdinc.h"
 	"begin_code.h"
 	"close_code.h"
+
+1329926242 e:\dev\robot\robot2d\\robot2d\robot2d_gui.h
+	<windows.h>
+	<SDL/SDL.h>
+	<GL/gl.h>
+	<GL/glu.h>
+	<box2d/box2d.h>
+	<Robot2d/Render.h>
+
+1329925622 source:e:\dev\robot\robot2d\robot2d\render.cpp
+	"Render.h"
+	"stdarg.h"
+	"stdio.h"
+	<GL/gl.h>
+	<GL/glu.h>
+
+1329925858 e:\dev\robot\robot2d\robot2d\render.h
+	<Box2d/Box2d.h>
+
+1329925858 e:\dev\robot\robot2d\\robot2d\render.h
+	<Box2d/Box2d.h>
 
