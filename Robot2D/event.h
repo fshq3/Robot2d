@@ -42,9 +42,9 @@ public:
 				(*it)->on_event(e);
 			}
 		}
-
 	}
 };
+//继承c_event 的对象会自动注册自己到c_event_contain ，然后由消息源发给c_event_contain，然后c_event_contain调用每个注册后的i_event
 class c_event:public i_event
 {
 public:
