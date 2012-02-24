@@ -1,0 +1,96 @@
+<world>
+
+<class name="hand">
+
+</class>
+<!-- 直接创建对象-->
+
+
+
+<box2d id=1>
+	<shape type="box" width=20 height=0.5></shape>
+	<body type="static">
+		<position x=0 y=0></position>
+	</body>
+</box2d>
+<box2d id=1>
+	<shape type="box" width=20 height=0.5></shape>
+	<body type="static">
+		<position x=0 y=40></position>
+	</body>
+</box2d>
+<box2d id=1>
+	<shape type="box" width=0.5 height=20></shape>
+	<body type="static">
+		<position x=-20 y=20></position>
+	</body>
+</box2d>
+<box2d id=1>
+	<shape type="box" width=0.5 height=20></shape>
+	<body type="static">
+		<position x=20 y=20></position>
+	</body>
+</box2d>
+
+
+<box2d id=2 number=10>
+	<shape type="box" width=0.5 height=0.5 restitution="0.9" density=1.0></shape>
+	<body type="dynamic">
+		<position x=20 y=25></position>
+	</body>
+</box2d>
+<box2d id=2 number=2>
+	<shape type="box" width=1 height=1  restitution="0.99" density=10.0 friction="1.0"></shape>
+	<body type="dynamic">
+		<position x=15 y=25></position>
+	</body>
+</box2d>
+<box2d id=2 number=1>
+	<shape type="polygon" restitution="0.99" density=10.0 friction="1.0">
+		<p x=0 y=0></p>
+		<p x=2 y=0></p>
+		<p x=2 y=2></p>
+	</shape>
+	<body type="dynamic">
+		<position x=10 y=25></position>
+	</body>
+</box2d>
+<box2d id=43 number=1>
+	<shape type="edge" density=0.0 >
+		<p x=0 y=0></p>
+		<p x=2 y=3></p>
+	</shape>
+	<shape type="edge" density=0.0 >
+		<p x=2 y=3></p>
+		<p x=2 y=0></p>
+	</shape>
+	<body type="static">
+		<position x=10 y=25></position>
+	</body>
+</box2d>
+
+
+<box2d id=2 number=1>
+	<shape type="circle" radius=1.0 restitution="0.99" density=10.0 friction="1.0">
+	</shape>
+	<body type="dynamic">
+		<position x=10 y=25></position>
+	</body>
+</box2d>
+
+
+<!-- 使用机器人运动方程构建-->
+<robot2d id=3>
+	<start>1,0;1,1</start>
+	<translate type="servo" id=0>1,0;1,1</translate>
+</robot2d>
+
+
+
+<action type="contact">
+	<object>[id=1]</object>
+	<object>[id=0]</object>
+	<commond>stop</commond>
+	<text>touch</text>
+</action>
+</world>
