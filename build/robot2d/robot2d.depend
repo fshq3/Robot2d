@@ -380,8 +380,10 @@
 	"stdarg.h"
 	"stdio.h"
 
-1329934413 source:e:\dev\robot\robot2d\robot2d\robot2d_world.cpp
+1330082751 source:e:\dev\robot\robot2d\robot2d\robot2d_world.cpp
 	"robot2d_world.h"
+	<tinyxml/tinyxml.h>
+	<iostream>
 
 1329934383 e:\dev\robot\robot2d\robot2d\robot2d_world.h
 	<Robot2d/Robot2d.h>
@@ -393,4 +395,19 @@
 
 1330082010 e:\dev\robot\robot2d\\robot2d\event.h
 	<vector>
+
+1305426297 e:\dev\robot\robot2d\\tinyxml\tinyxml.h
+	<ctype.h>
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<assert.h>
+	<string>
+	<iostream>
+	<sstream>
+	"tinystr.h"
+
+1305426297 e:\dev\robot\robot2d\\tinyxml\tinystr.h
+	<assert.h>
+	<string.h>
 
