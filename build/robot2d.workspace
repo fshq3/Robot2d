@@ -3,7 +3,10 @@
 	<Workspace title="Workspace">
 		<Project filename="box2d/box2d.cbp" />
 		<Project filename="tinyxml/tinyxml.cbp" />
-		<Project filename="robot2d/robot2d.cbp" active="1" />
+		<Project filename="robot2d/robot2d.cbp" active="1">
+			<Depends filename="box2d/box2d.cbp" />
+			<Depends filename="tinyxml/tinyxml.cbp" />
+		</Project>
 		<Project filename="robot2d_test/robot2d_test.cbp" />
 	</Workspace>
 </CodeBlocks_workspace_file>

@@ -2,6 +2,8 @@
 #define ROBOT2D_GUI_H_INCLUDED
 #include <Robot2d/Robot2d.h>
 #include <Robot2d/robot2d_world.h>
+
+#include <Robot2d/event.h>
 using namespace std;
 /*
  * SDL OpenGL Tutorial.
@@ -11,7 +13,6 @@ using namespace std;
  * Distributed under terms of the LGPL.
  */
 static GLboolean should_rotate = GL_TRUE;
-
 
 class c_robot2d_gui
 {
@@ -169,7 +170,7 @@ public:
 		exit( code );
 	}
 
-	static void handle_key_down( SDL_keysym* keysym )
+	static void handle_key_down( const SDL_keysym* keysym )
 	{
 
 		/*
@@ -193,19 +194,26 @@ public:
 
 	}
 
-	static void process_events( void )
+	void process_events( void )
 	{
 		/* Our SDL event placeholder. */
 		SDL_Event event;
-
+		class keydown:public c_event
+		{
+		public:
+			Uint8 type()
+			{
+				return SDL_KEYDOWN;
+			}
+			void on_event(const SDL_Event &event)
+			{
+				c_robot2d_gui::handle_key_down( &event.key.keysym );
+			}
+		}kd;
 		/* Grab all the events off the queue. */
 		while( SDL_PollEvent( &event ) ) {
-
+			c_event_contain::instance().on_event(event);
 			switch( event.type ) {
-			case SDL_KEYDOWN:
-				/* Handle key presses. */
-				handle_key_down( &event.key.keysym );
-				break;
 			case SDL_QUIT:
 				/* Handle quit requests (like Ctrl-c). */
 				quit_tutorial( 0 );
